@@ -1,24 +1,18 @@
 import {
   ProfileOutlined,
-  LaptopOutlined,
   MobileOutlined,
-  NotificationOutlined,
   UserOutlined,
   FacebookFilled,
   LinkedinFilled,
   GoogleSquareFilled,
   TwitterSquareFilled,
 } from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout, Menu } from "antd";
+const { Header, Content, Footer } = Layout;
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 
 const RootLayout = ({ children }) => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
   return (
     <Layout>
       <Header
@@ -43,19 +37,28 @@ const RootLayout = ({ children }) => {
           </h1>
         </div>
         <Menu theme="dark" mode="vertical" className={styles.menu_items}>
-          <items>
-            <Link href="/allNews"><ProfileOutlined />All News</Link>
-          </items>
-          <items
-            style={{
-              margin: "0px 25px",
-            }}
-          >
-            <Link href="/about"> <UserOutlined />About Us</Link>
-          </items>
-          <items>
-            <Link href="/contact"><MobileOutlined />Contact Us</Link>
-          </items>
+          <Link href="/allNews">
+            <items>
+              <ProfileOutlined />
+              All News
+            </items>
+          </Link>
+          <Link href="/about">
+            <items
+              style={{
+                margin: "0px 25px",
+              }}
+            >
+              <UserOutlined />
+              About Us
+            </items>
+          </Link>
+          <Link href="/contact">
+            <items>
+              <MobileOutlined />
+              Contact Us
+            </items>
+          </Link>
         </Menu>
       </Header>
 

@@ -15,7 +15,7 @@ const contentStyle = {
 };
 
 const Banner = () => (
-  <Carousel effect="fade"  style={{ margin: "20px 0px" }}>
+  <Carousel effect="fade" autoplay style={{ margin: "20px 0px" }}>
     {/* slider-1 */}
     <div>
       <Row>
@@ -87,7 +87,7 @@ const Banner = () => (
           }}
           style={contentStyle}
         >
-          <Image src={DrawingImage} layout="fill" alt="drawing_image" />
+          <Image src={DrawingImage} fill alt="drawing_image" />
         </Col>
       </Row>
     </div>
@@ -100,7 +100,7 @@ const Banner = () => (
           }}
         >
           <h1 style={{ fontSize: "50px" }}>
-            Eagle, YOU ARE
+            EAGLE, YOU ARE
             <br />
             NOT ALONE
           </h1>
@@ -161,7 +161,12 @@ const Banner = () => (
           }}
           style={contentStyle}
         >
-          <Image src={EagleImage} layout="fill" alt="eagle_image" style={{grayScale:"-1"}} />
+          <Image
+            src={EagleImage}
+            fill
+            alt="eagle_image"
+            style={{ grayScale: "-1" }}
+          />
         </Col>
       </Row>
     </div>
