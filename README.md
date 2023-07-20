@@ -1,7 +1,9 @@
 * [lets start Our Journey with Next.js](#lets-start-our-journey-with-nextjs)
-# [Clear concept of pre-rendering and client-side-render](#clear-concept-of-pre-rendering-and-client-side-render)
-# [crate Next js app foler stractur](#crate-next-js-app)
-# [next js with file system route and dynamic route ](#next-js-with-file-system-route)
+* [Clear concept of pre-rendering and client-side-render](#clear-concept-of-pre-rendering-and-client-side-render)
+* [crate Next js app foler stractur](#crate-next-js-app)
+* [next js with file system route and dynamic route ](#next-js-with-file-system-route)
+* [Catch all route](#catch-all-routes)
+* [custom 404 file not found](#custom-404-file-create)
 
 
 
@@ -177,13 +179,13 @@ http://localhost:3000/article/post/post
 ### dynamic route করতে কি করতে হবে । 
 ###### প্রথমে একটা  ফোল্ডার create করি ।  নাম দিলাম product 
 ###### [productId].js দিতে হবে 
-### মনে 
-
+### মনে রাখতে হবে [] braket দিতে হবে ।
+### rsc দিয়ে file create করার সাথে সাথে নাম চেন্জ করতে হবে ।
+### এবং import করতে হবে useRouter hook
+### ui তে যদি দেখাতে চাই তাহলে router.query.productId দিতে হবে । এখানে query দিলাম , কারণ এট url থেকে নিতে হবে । productId দিলাম কেন ? কারণ এটা file name .
 ```js
 import { useRouter } from 'next/router';
 import React from 'react';
-
-
 const productDetails = () => {
     const router = useRouter()
     return (
@@ -195,3 +197,44 @@ const productDetails = () => {
 
 export default productDetails;
 ```
+## Catch all route 
+##### catch all route মানে হল , 
+```js
+http://localhost:3000/news/3-04-20023/manday/abc
+http://localhost:3000/news/2-3-2023/java/jjsj
+
+```
+##### এই url এ dynamic date এর পরে আরও route থাকতে পারে । এই dynamic date এর পরে data search করা যেতে পারে ।
+### এটাকে বলা হয় next js এর ভাষায় catch all route
+### এখানে অনেক route দিলে কাজ করবে 
+### এটা কিভাবে করব?
+### এজন্য ফাইলের দিতে হবে 
+## [...slug].js এখানে তিনটা ডট দিতে হবে ।
+for example
+
+* news 
+  * [...slug].js
+```js
+import React from 'react';
+
+const FilterIng = () => {
+    return (
+        <div>
+             this the filter ing
+        </div>
+    );
+};
+
+export default FilterIng;
+```
+## Custom 404 file create
+এতন্য file name দিতে হবে 
+* page 
+  * 404.js
+##### অবশ্যই 404.js লিখতে হবে । এট name convention
+
+
+
+
+
+
