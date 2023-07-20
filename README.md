@@ -5,6 +5,7 @@
 * [Catch all route](#catch-all-routes)
 * [custom 404 file not found](#custom-404-file-create)
 * [second most popular ant design setup](#ant-design-setup)
+* [Automatic home when 404 page](#automatic-home-after-5-second)
 
 
 
@@ -257,7 +258,27 @@ const home = () => {
 
 export default home;
 ```
+## Automatic home after 5 second 
+#### এটা useRouter hook দিয়ে করা হচ্ছে । 
+#### setTimeout function এ বলে দিছি , ২ সেকেন্ড পরে কোথায় যাবে ।
+```js
+import { useRouter } from 'next/router';
+import React from 'react';
 
+const eror = () => {
+    const router = useRouter();
+    setTimeout(() => {
+        router.push("/")
+    }, 2000);
+    return (
+        <div>
+          <img src='https://www.nicepng.com/png/detail/373-3734776_404-banner-http-404.png' width="100%"></img>  
+        </div>
+    );
+};
+
+export default eror;
+```
 
 
 
