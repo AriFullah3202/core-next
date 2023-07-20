@@ -4,6 +4,7 @@
 * [next js with file system route and dynamic route ](#next-js-with-file-system-route)
 * [Catch all route](#catch-all-routes)
 * [custom 404 file not found](#custom-404-file-create)
+* [second most popular ant design setup](#ant-design-setup)
 
 
 
@@ -60,6 +61,7 @@ pre reander এবু কি
 ## How to create Next js appS
 ```bash
 npx crate-next app@latest my-app
+npm install antd -save
 ```
 then no
 
@@ -232,6 +234,29 @@ export default FilterIng;
 * page 
   * 404.js
 ##### অবশ্যই 404.js লিখতে হবে । এট name convention
+
+## Ant design setup
+
+```js
+npm install antd --save
+```
+##### navigate to home
+```js
+import { Button } from 'antd';
+import Link from 'next/link';
+import React from 'react';
+
+const home = () => {
+    return (
+        <Button type="primary">
+            <Link href = "/"> Home</Link>
+
+      </Button>
+    );
+};
+
+export default home;
+```
 
 
 
