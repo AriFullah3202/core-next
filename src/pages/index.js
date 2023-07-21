@@ -1,43 +1,29 @@
 import React from 'react';
-import { Breadcrumb, Button, Layout, Menu, theme } from 'antd';
+import { Breadcrumb, Button, Divider, Layout, Menu, theme } from 'antd';
+import RootLayout from '@/components/layouts/RootLayout';
+import Head from 'next/head';
 
 const { Header, Content, Footer } = Layout;
 
-const App = () => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+const Home = () => {
 
   return (
-    <Layout className="layout">
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
-        <div className="demo-logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['2']}
-        
-        >
-             <Button type="primary" href='/news'>
-            Primary
-          </Button>
-  
-
-        </Menu>
-      </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className="site-layout-content" style={{ background: colorBgContainer }}>
-          Content
-        </div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
-    </Layout>
+    <div>
+      <Head>
+        <title>Next home page</title>
+        <meta name='home' description ="this page created by next page"></meta>
+      </Head>
+     <h1>this is home</h1>
+    </div>
   );
 };
 
-export default App;
+export default Home;
+
+Home.getLayout = function getLayout(page) {
+  return (
+    <RootLayout>
+      {page}
+    </RootLayout>
+  )
+}

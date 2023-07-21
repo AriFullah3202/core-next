@@ -6,6 +6,10 @@
 * [custom 404 file not found](#custom-404-file-create)
 * [second most popular ant design setup](#ant-design-setup)
 * [Automatic home when 404 page](#automatic-home-after-5-second)
+* [Using head component , Image component , Import alias , and Moudle Summary](#using-head-components-for-better-seo--image-component--import-alias)
+  * [Seo](#seo)
+  * [image optimazation](#image-optimization)
+
 
 
 
@@ -62,6 +66,8 @@ pre reander এবু কি
 ## How to create Next js appS
 ```bash
 npx crate-next app@latest my-app
+cd my-app
+npm run dev
 npm install antd -save
 ```
 then no
@@ -279,6 +285,311 @@ const eror = () => {
 
 export default eror;
 ```
+## Explore simple layout system
+#### প্রথমে একটা component বানাতে হবে , এখানে header , navbar , footer আছে ।
+* src
+  *  components
+    * RootLayout
+
+```js
+import React from 'react';
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
+const { Header, Content, Footer } = Layout;
+
+const RootLayout = ({children}) => {
+    const {
+        token: { colorBgContainer },
+      } = theme.useToken();
+    return (
+        <Layout className="layout">
+        <Header
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <div className="demo-logo" />
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={['2']}
+            items={new Array(15).fill(null).map((_, index) => {
+              const key = index + 1;
+              return {
+                key,
+                label: `nav ${key}`,
+              };
+            })}
+          />
+        </Header>
+        <Content
+          style={{
+            padding: '0 50px',
+          }}
+        >
+          <Breadcrumb
+            style={{
+              margin: '16px 0',
+            }}
+          >
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>List</Breadcrumb.Item>
+            <Breadcrumb.Item>App</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            className="site-layout-content"
+            style={{
+              background: colorBgContainer,
+              height: '100vh'
+            }}
+          >
+            {children}
+          </div>
+        </Content>
+        <Footer
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          Ant Design ©2023 Created by Ant UED
+        </Footer>
+      </Layout>
+    );
+};
+
+export default RootLayout;
+```
+_app.js
+
+**এখানে আমাদের app `getLayout` যদি থাকে বসাই দিবে । নিচে কল করা হয়েছে ।**
+
+```js
+import '@/styles/globals.css'
+export default function MyApp({ Component, pageProps }) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout || ((page) => page)
+ 
+  return getLayout(<Component {...pageProps} />)
+}
+```
+### যে component আমরা header , footer , navbar দিতে চাই । সে component এর নিচে 
+### নিচের ফাইলটা দিতে হবে ।
+
+**এখানে আমরা `getLayout` ‌`property` কে এবং funcion কে `assign` করে দিচ্ছি , যার নাম হচ্ছে `getLayout` ফাংশন । 
+```js
+
+Home.getLayout = function getLayout(page) {
+  return (
+    <RootLayout>
+      {page}
+    </RootLayout>
+  )
+}
+```
+## Explore Dashboard layout and Nested layout system
+
+```js
+
+import React, { useState } from 'react';
+import {
+  DesktopOutlined,
+  FileOutlined,
+  PieChartOutlined,
+  TeamOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
+const { Header, Content, Footer, Sider } = Layout;
+function getItem(label, key, icon, children) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+  };
+}
+const items = [
+  getItem('Option 1', '1', <PieChartOutlined />),
+  getItem('Option 2', '2', <DesktopOutlined />),
+  getItem('User', 'sub1', <UserOutlined />, [
+    getItem('Tom', '3'),
+    getItem('Bill', '4'),
+    getItem('Alex', '5'),
+  ]),
+  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+  getItem('Files', '9', <FileOutlined />),
+];
+const DashboardLayout = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+  return (
+    <Layout
+      style={{
+        minHeight: '100vh',
+      }}
+    >
+      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+        <div className="demo-logo-vertical" />
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+      </Sider>
+      <Layout>
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+          }}
+        />
+        <Content
+          style={{
+            margin: '0 16px',
+          }}
+        >
+          <Breadcrumb
+            style={{
+              margin: '16px 0',
+            }}
+          >
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+              background: colorBgContainer,
+            }}
+          >
+            Bill is a cat.
+          </div>
+        </Content>
+        <Footer
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          Ant Design ©2023 Created by Ant UED
+        </Footer>
+      </Layout>
+    </Layout>
+  );
+};
+export default DashboardLayout;
+```
+#### Nested layout
+**এখানে আমরা admin page এ নেস্টেট লেআউট তৈরি করব । যেমন এখানে header and footer থাকনে এবং sidebar থাকবে ।**
+```js
+
+import DashboardLayout from '@/components/layouts/DashboardLayout';
+import RootLayout from '@/components/layouts/RootLayout';
+import React from 'react';
+
+const AdminHomePage = () => {
+    return (
+        <div>
+            this is admin
+        </div>
+    );
+};
+
+export default AdminHomePage;
+AdminHomePage.getLayout = function getLayout(page) {
+  return  <RootLayout>
+            <DashboardLayout>
+              {page}
+            </DashboardLayout>
+          </RootLayout>
+}
+
+```
+
+## Using Head components for better SEO , Image Component , Import alias
+
+#### Import Alias
+**নেক্সট জেএস `import` দুইভাবে করা যায় ।**
+**একটা @ দিয়ে , এটা হচ্ছে `absulute path` আরেকটা আছে ../component ../ দিয়ে ।**
+### A relative path describes the location of a file relative to the current (working) directory*. An absolute path describes the location from the root directory 
+
+
+```js
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+
+```
+#### Seo
+**Seo friendly use করার জন্য আমরা  হেড কম্পোনেন্ট ইউজ করি ।**
+**এভাবে আমরা উপরে টাইটলটা সেট করতে পারি**
+‌‌```js
+ <Head>
+        <title>Next home page</title>
+      </Head>
+```
+
+**আমরা `meta tag` ইউজ করতে পারি এবং description এড করে দিতে পারি**
+**এভাবে আমরা রলে দিতে পারি কোন পেইজে কি আছে । এটা দেখতে চাইলে `right click` করে `view source page` এ গিয়ে ‌`wrap` ক্লিক করতে হবে**
+
+```js
+  return (
+    <div>
+      <Head>
+        <title>Next home page</title>
+        <meta name='home' description ="this page created by next page"></meta>
+      </Head>
+     <h1>this is home</h1>
+    </div>
+  );
+```
+## image optimization
+
+**ইমেজ দুইভাবে দেখা যায় । তবে next এর image component ব্যবহার করা যায় , এটা খুব স্পীড হয় ।**
+**তবে মনে রাখতে হবে width , height , layout , এট্রিবিউট ইউজ করতে হবে ।**
+```js
+import Image from 'next/image';
+import React from 'react';
+
+const Album = () => {
+    return (
+        <div>
+           <img src='https://images.ctfassets.net/c63hsprlvlya/IacLLeOBR5WCvdCPqKuff/6860b5cc464c4f54703a2befa3f706b4/nextjs3.webp' alt=''></img>
+           
+           <Image src="https://images.ctfassets.net/c63hsprlvlya/IacLLeOBR5WCvdCPqKuff/6860b5cc464c4f54703a2befa3f706b4/nextjs3.webp" width={400} height={300} layout='responsive'></Image>
+        </div>
+    );
+};
+
+export default Album;
+
+```
+
+## Local image uses , downloaded image
+**ষবকিছু সেইম , জাস্ট এটা download করা**
+```js
+import Image from 'next/image';
+import React from 'react';
+import NextImage from '../assets/nextjs3.webp'
+
+const Album = () => {
+    return (
+        <div>
+           <img src='https://images.ctfassets.net/c63hsprlvlya/IacLLeOBR5WCvdCPqKuff/6860b5cc464c4f54703a2befa3f706b4/nextjs3.webp' alt=''></img>
+           
+           <Image src="https://images.ctfassets.net/c63hsprlvlya/IacLLeOBR5WCvdCPqKuff/6860b5cc464c4f54703a2befa3f706b4/nextjs3.webp" width={400} height={300} layout='responsive'></Image>
+           <Image src={NextImage} width={400} height={300} layout='responsive'></Image>
+        </div>
+    );
+};
+
+export default Album;
+
+```
+
+
 
 
 

@@ -1,7 +1,20 @@
-import React from 'react'
+import RootLayout from '@/components/layouts/RootLayout';
+import React from 'react';
 
-export default function () {
+const about = () => {
   return (
-    <div>this is about page</div>
+    <div>
+      
+    </div>
+  );
+};
+
+export default about;
+
+about.getLayout = function getLayout(page){
+  return (
+    <RootLayout>
+      {page}
+    </RootLayout>
   )
 }
