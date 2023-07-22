@@ -9,6 +9,7 @@
 * [Using head component , Image component , Import alias , and Moudle Summary](#using-head-components-for-better-seo--image-component--import-alias)
   * [Seo](#seo)
   * [image optimazation](#image-optimization)
+### [Data Fatching Module 25 . please read README.md file](ph-news-portal-starter-pack-NextJs_2nd_Module_Resource/README.md)
 
 
 
