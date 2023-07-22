@@ -21,7 +21,8 @@ const AboutPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>About Us page is under developing.....</h1>
+      <h1>About Us page is under developing developing.....</h1>
+
       <Link href="/">
         <Button>Back To Home</Button>
       </Link>
