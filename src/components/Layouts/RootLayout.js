@@ -103,4 +103,5 @@ const RootLayout = ({ children }) => {
     </Layout>
   );
 };
+
 export default RootLayout;

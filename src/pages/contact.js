@@ -2,6 +2,7 @@ import { Button } from "antd";
 import Link from "next/link";
 import Head from "next/head";
 import RootLayout from "@/components/Layouts/RootLayout";
+import styles from "@/styles/Contact.modules.css"
 
 const ContactPage = () => {
   return (
@@ -20,7 +21,7 @@ const ContactPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Developer is sleeping....! Contact Us page coming soon....!</h1>
+      <h1 className={styles.heading}> Developer is sleeping....! Contact Us page coming soon....!</h1>
       <Link href="/">
         <Button>Back To Home</Button>
       </Link>
