@@ -316,7 +316,9 @@ const eror = () => {
 export default eror;
 ```
 ## Explore simple layout system
+
 #### প্রথমে একটা component বানাতে হবে , এখানে header , navbar , footer আছে ।
+
 * src
   *  components
     * RootLayout
@@ -403,6 +405,7 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 ### যে component আমরা header , footer , navbar দিতে চাই । সে component এর নিচে 
+
 ### নিচের ফাইলটা দিতে হবে ।
 
 **এখানে আমরা `getLayout` ‌`property` কে এবং funcion কে `assign` করে দিচ্ছি , যার নাম হচ্ছে `getLayout` ফাংশন । 
@@ -537,8 +540,11 @@ AdminHomePage.getLayout = function getLayout(page) {
 ## Using Head components for better SEO , Image Component , Import alias
 
 #### Import Alias
+
 **নেক্সট জেএস `import` দুইভাবে করা যায় ।**
+
 **একটা @ দিয়ে , এটা হচ্ছে `absulute path` আরেকটা আছে ../component ../ দিয়ে ।**
+
 ### A relative path describes the location of a file relative to the current (working) directory*. An absolute path describes the location from the root directory 
 
 
@@ -554,14 +560,18 @@ AdminHomePage.getLayout = function getLayout(page) {
 ```
 #### Seo
 **Seo friendly use করার জন্য আমরা  হেড কম্পোনেন্ট ইউজ করি ।**
+
 **এভাবে আমরা উপরে টাইটলটা সেট করতে পারি**
+
 ‌‌```js
  <Head>
         <title>Next home page</title>
       </Head>
 ```
 
+
 **আমরা `meta tag` ইউজ করতে পারি এবং description এড করে দিতে পারি**
+
 **এভাবে আমরা রলে দিতে পারি কোন পেইজে কি আছে । এটা দেখতে চাইলে `right click` করে `view source page` এ গিয়ে ‌`wrap` ক্লিক করতে হবে**
 
 ```js
@@ -578,6 +588,7 @@ AdminHomePage.getLayout = function getLayout(page) {
 ## image optimization
 
 **ইমেজ দুইভাবে দেখা যায় । তবে next এর image component ব্যবহার করা যায় , এটা খুব স্পীড হয় ।**
+
 **তবে মনে রাখতে হবে width , height , layout , এট্রিবিউট ইউজ করতে হবে ।**
 ```js
 import Image from 'next/image';
@@ -598,6 +609,7 @@ export default Album;
 ```
 
 ## Local image uses , downloaded image
+
 **ষবকিছু সেইম , জাস্ট এটা download করা**
 ```js
 import Image from 'next/image';
@@ -684,10 +696,15 @@ http://localhost:5000/news/1
 ## Data fatching with getStaticProps
 
 **আমরা জানি রিয়েক্টে ডাটা ফেস করার জন্য `useEffect` ইউজ করতাম । এটা `client side` কাজ করত । তাছাড়া এটা `side effect` কাজ করত ।**
+
 **নেক্সটা জেএস `pre render` হয় `server side` কাজ করার জন্য কিছু built in function দিয়ে দিয়েছে**
+
 **তারা মধ্যে একটা হল `getStaticProps`, নিচে এ সম্পকে আলোচনা করা হবে**
+
 **নিচের কোডটি যে পেইজে ডাটা ফেস করব ওই পেইজে দিতে হবে**
+
 **মনে রাখতে হবে এখানে `console.log` করা যাবে না ।**
+
 * **এটা `async fucntion`একটা `promise` রির্টান করবে**
 
 ```js
@@ -876,7 +893,10 @@ export const getStaticProps = async () => {
 
 
 ## why we save image in public folder in next.js
+
+
 **আমরা `root` ডাইরেক্টরি থেকে  `image` এর লোকেশন বলে দিতে হবে । সুতারাং `public` ফোল্ডার হচ্ছে রোট directory যদি আমরা src ফোল্ডার থেকে assets ফোল্ডারে লোকেশন দিলে image দেখাব না যেমন :** 
+
 
 ```js
              "id": 1,
@@ -893,11 +913,17 @@ export const getStaticProps = async () => {
 
 
 ## Specific data form json
+
 **এখানে `getStaticProps` হলো সব ডাটা গুলো নিয়ে আসতেছে । এখান থেকে map করে শুধুমাত্র `id` নিয়ে নিচ্ছি ।**
+
 **তারপর getStaticProps হলো `params` গুলো নিয়ে নিবে ।**
+
 **এখানে ‌`getStaticPaths` এর মধ্যে `fallback : false` দ যদি id না থাকে তাহলে 404 not found বলবে**
+
 **এখানে ‌`getStaticPaths` এর মধ্যে `fallback : true`যখন `large data` থাকবে যদি id না থাকে তাহলে লোডিং বলবে**
+
 **এখানে ‌`getStaticPaths` এর মধ্যে `fallback : blocking`যখন `large data` থাকবে যদি id না থাকে তাহলে লোডিং বলবে**
+
 **এখানে যে `newsId` দিয়েছি কারণ filename এরকম দিয়েছি**
 
 
@@ -934,7 +960,9 @@ export const getStaticProps = async (context) => {
 ```
 **এই যে আমরা `getStaticProps` and `getStaticPaths` ব্যবহারা করে ডাইনামিক পেইজটা করেছি এটাকে বলা হয় SSG (static side generation) অথাৎ `build` টাইমে আমাদের ডাটা create হচ্ছে । কিন্তু ্‌এখানে একটা ইস্যু আছে । আমাদের ডাটা প্রতিসেকেন্ডে আপডেট হচ্ছে । যার ফলে একজন ইউজার আপডেট দেখতে পাবে না । এখন প্রশ্ন আসতে পারে । ভাই আমরা `revalidate` ইউজ করি , কিন্তু তখন ও সেকেন্ড দিতে হয় ।** 
 
+
 **তাই এজন্য আমরা ইউজ করবো `SSR`(Server side rendering) এখানে request টাইমে আমরা ডাটা পেয়ে যাবো ।**
+
 **এখন আমরা `index.js and [nextid].js` চেন্জ করে নিচের মতো করে দিয়েছি ।**
 
 ```js
@@ -948,7 +976,8 @@ export const getServerSideProps = async () => {
   }
 }
 ```
-**এখানে ইউজারের রিকোয়েস্টের অনুসারে ইনস্টেন্ট সাভার থেকে ডাটা নিয়ে আসছি । এবং ডাইনামিক কনটেন্টটা পেয়ে যাচ্ছি । এটা static data তৈরি হচ্ছে না , পুরোটা server side data তৈরি হচ্ছে । যার ফলে SEO friendly হচ্ছে ।** 
+**এখানে ইউজারের রিকোয়েস্টের অনুসারে ইনস্টেন্ট সাভার থেকে ডাটা নিয়ে আসছি । এবং ডাইনামিক কনটেন্টটা পেয়ে যাচ্ছি । এটা static data তৈরি হচ্ছে না , পুরোটা server side data তৈরি হচ্ছে । যার ফলে SEO friendly হচ্ছে ।**
+
 
 ### এই same কাজটা useEffect দিয়ে করতে পারতাম , client side rendering হয়ে যতো , যার কারণে seo friendly behavior টা পেতাম না ।
 
@@ -956,11 +985,14 @@ export const getServerSideProps = async () => {
 
 
 **এটা প্রজেক্টা উপর ডিপেন্ড করে । প্রতিনিয়ত পোস্ট আপডেট হবে তখন আমরা server side rendering ইউজ করতে হবে । আর যখন আমরা ১০ সেকেন্ড পর পর বা ২০ সেকেন্ড পর পর আপডেট হবে তখন আমরা static side generation ইউজ করব ।**
+
 **`Dashboard` and `user dashboar , admin dashborad` এখানে server side rendering প্রয়োজন নেই । `client side generation` ইউজ করব ।**
 
 
 
 ## Technical Breakdown of Clients side data faching usin RTK Query
+
+
 ##### [download redux](#getting-started-and-install-some-packages)
 
 * src
@@ -1030,7 +1062,9 @@ export const apiSlice = createApi({
 export const { useGetNewesQuery  } = apiSlice
 ```
 **তারপর এই hook টাকে কল করলাম । এই hook চারটা ডাটা রিটান করে ।‌‌**
+
 **মনে রাখতে হবে এটা initially ডাটা undefine**
+
 ```js
   const { data , isError , isLoading , error } = useGetNewesQuery();
   console.log(data)
@@ -1038,7 +1072,9 @@ export const { useGetNewesQuery  } = apiSlice
 
 
 ## Dynamic import ( lazy loading) No SSR
+
 **আমাদের `website performance` বৃদ্ধি করতে । কোন content যেটা আসতে সময় লাগছে । আমরা চাচ্ছি ওই time টাতে একটা `Loading state` দেখাবে । তখন আমরা `Dynamic import` or `lazy loading` বলে থাকি**
+
 
 **আমরা যে কম্পোনেন্টে loading দেখানে সেই component এর লোকেশন দিবো । তারপর তার নাম দিতে হবে**
 
@@ -1052,14 +1088,19 @@ export const { useGetNewesQuery  } = apiSlice
  <DynamicLoading />
 ```
 ## Install mongodb create database insert json data into mongodb database and connect to mongodb
+
 **Install mongodb**
 
 ```bash
 npm i mongodb
 ```
 **create database**
+
 **প্রথমে `mongodb` তে লগইন করতে হবে । তারপর `database access` গিয়ে `create new database user` এ ক্লিক দিতে হবে । তারপর ডাটাবেজ নেম এবং পাসওযাড় দিতে হবে । `ডাটাবেজ নেম ও পাসওর্য়াড় মনে রাখতে হবে` তারপর `database` ক্লিক দিতে হবে । তারপর `browse Collection` এ গিয়ে `create database` গিয়ে ডিবিনেম, কালেকশন নেম দিতে হবে ।** 
+
+
 **`database` ক্লিক দিয়ে `connect` এ ক্লিক দিয়ে `drivers` তারপর নিচের কোড কপি করতে হবে ।**
+
 **insert json data এখানে browse collection এ গিয়ে insert document এ ক্লিক করে array আকারে insert করতে হবে**
 
 ```js
@@ -1206,7 +1247,9 @@ const CreateNews = () => {
 export default CreateNews;
 ```
 ## Css Module support in next js
+
 **আমরা `react` এর মধ্যে যখন কোন কম্পোনেন্টের জ্ন্য `css` এপ্লাই করতাম  তখন ওই style টা সব কম্পোনেন্টে apply হয়ে যেতো আথাৎ overflow হয়ে যতো । এটা থামানোর জন্য next js এ আছে `css module support`**
+
 
 * styles
   * About.Modules.css
