@@ -111,7 +111,7 @@ npm run dev
 
 ## How to create Next js appS
 ```bash
-npx crate-next app@latest my-app
+npx create-next app@latest
 cd my-app
 npm run dev
 npm install antd -save
