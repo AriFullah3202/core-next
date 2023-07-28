@@ -112,6 +112,7 @@ npm run dev
 ## How to create Next js appS
 ```bash
 npx create-next app@latest
+এখানে এই কমান্ড দেয়ার পর প্রজেক্ট নেম জিঙ্গেস করবে , eslint , tailwind ব্যবহার করবে কিনা জিঙ্গেস করবে ।
 cd my-app
 npm run dev
 npm install antd -save
