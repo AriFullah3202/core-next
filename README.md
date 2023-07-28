@@ -24,37 +24,51 @@
   - [Get and post data into mongodb](#get-and-post-data-into-mongodb)
   - [Css Module support in next js](#css-module-support-in-next-js)
 
-
-
+## [next auth]()
+ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+- [Getting Started nextAuth](#getting-started-next-auth)
+- [Implement Github authentication with Next Auth](#implement-github-authentication)
+- [User in Sessions](#user-in-sessions)
+- [Sign out](#sign-out-user)
+- [Redirect after login](#redirect-after-login)
+- [show user in profile](#show-user-in-profile)
+- [implement email and passoword authenticaion](#implementations-email-and-password-based-authentication-with-firebase-authentication)
+  - [Using react hook form](#using-react-hook-form)
+  - [Integration the firebase](#now-integrate-the-firebase)
+  - [Multi cursor , copy text and alignment](#multi-cursor-alignment)
 
 
 ## Lets Start our journey with Nextjs
-এখানে আমাদের জানতে হবে । next js কি ? কেন ব্যবহার করতে হয় ।
+**এখানে আমাদের জানতে হবে । next js কি ? কেন ব্যবহার করতে হয় ।**
 
-Next js হচ্ছে react এর framework . React with supper power . যা React এর সাথে combine করে হয়েছে । 
+**Next js হচ্ছে react এর framework . React with supper power . যা React এর সাথে combine করে হয়েছে ।** 
 
 ##### Super Power এর মধ্যে কি আছে ।
 - Built In Optimization
-   - React এ Image , Font , icon এর ফলে react এর পারফরমেন্স হবি হয়ে যেতো । 
-   - Next js এ built in optimization থাকার কারণে সে নিজে থেকে এগুলো optimize করে নে । 
+   - **React এ Image , Font , icon এর ফলে react এর পারফরমেন্স হবি হয়ে যেতো ।**
+   - **Next js এ built in optimization থাকার কারণে সে নিজে থেকে এগুলো optimize করে নে ।** 
    - যার কারণে ফাস্ট হয় । 
-- Pre-render(SSG + SSR)
-   - Next js তার performance কে optimize করতে SSG + SSR কনসেপ্ট ব্যবহার করেচে । 
+- **Pre-render(SSG + SSR)**
+   - **Next js তার performance কে optimize করতে SSG + SSR কনসেপ্ট ব্যবহার করেচে ।** 
    - এজন্য ফাস্ট হয় । 
 - Next level Data Fetching
-   - রিয়েক্ট client side ডাটা fatching করে । 
+   - **রিয়েক্ট client side ডাটা fatching করে ।** 
    - নেকস্ট জেস server side data fatiching ডাটা নিয়ে আসে ্ 
 - Powerful Routing and Layouts 
-   - আমরা react এ routing টা dependency আকারে install করেত হয় । 
+   - **আমরা react এ routing টা dependency আকারে install করেত হয় ।**
    - Next js এটা অটোমেটিক করে দে ,
-   - আরো আছে nested route . যা আমরা পরে দেখব ।
+   - **আরো আছে nested route . যা আমরা পরে দেখব ।**
 - API Routes 
-   - আমরা React এ সাভারেব জন্য express , node ব্যবহারে করে র্সাভার করতে হতো ।
+   - **আমরা React এ সাভারেব জন্য express , node ব্যবহারে করে র্সাভার করতে হতো ।**
    - next এ এগোলো সব দিয়ে দেয়া আছে । 
-#### Next js কেন ইউজ করব । 
+#### Next js কেন ইউজ করব ।
+
 ##### React হচ্ছে library এবং Next js হচ্ছ একটি framework
-##### আর next documantaion এ বলছে full stack করতে চাইলৈ next js ইউজ করতে । আর library হচ্চে ছোটা তিনিস framework হচ্ছে বড় তিনিস । 
+
+##### আর next documantaion এ বলছে full stack করতে চাইলৈ next js ইউজ করতে । আর library হচ্চে ছোটা তিনিস framework হচ্ছে বড় তিনিস ।
+
 ##### আমরা রিযেক্টে fulll stack project করতে thired party লাইব্রেরি ইউজ করতে হতৌ । যেমণ : firebase , react router , express
+
 ##### next js এর মধ্যে Built in Routing System , Api Routes  , Next Auth আছে । 
 ##### next js 
   - next js preRenderg
@@ -62,19 +76,21 @@ Next js হচ্ছে react এর framework . React with supper power . য�
     - Server side Rendering (SSR)
   - react js Client side Rendering
   ##### এবার বলা যায় Rendering কি 
+
 ##### html , css , javaScript কে convert করে একটা ইউজার জন্য দৃশ্যমান layout make করা 
 
 ## Clear concept of pre-rendering and client side rendering 
 React এ client side rending 
 
-Next jas re-rnder এ server side rendering and 
+**Next jas re-rnder এ server side rendering and** 
 
 
 pre reander এবু কি 
-যেমন : next এর default url বা শরুর website, right click করে  view souce book গেলে বুজা যায় । 
+**যেমন : next এর default url বা শরুর website, right click করে  view souce book গেলে বুজা যায় ।** 
 
 এবার জানতে হবে = Static side Generation টা কেন কলা হয় । 
 ##### এটা build time এ তৈরি হচ্ছে । 
+
 ##### server side rendering টা user এর requst অনুসারে হচ্ছে । 
 
 ## Getting Started and install some packages
@@ -115,13 +131,17 @@ then cd my-add
 then npm run dev
 
 ## folder structur e সবচেয়ে গুরুত্বপূর্ণ হচ্ছে _app.js
-## যেখান থেকে component গুলো generate হয়ে ui তে দেখাচ্ছে । এটা না থাকলে হবে না ।
+
+## যেখান থেকে component গুলো generate হয়ে ui তে দেখাচ্ছে । এটা না থাকলে হবে না 
+
 #### তারপর _app.js এরপর index.js এটা সেকেন্ড মেইন ফাইল । 
-pages ফোল্ডারে _app.js and index.js টা অবশ্যই লাগবে ।
+
+**pages ফোল্ডারে _app.js and index.js টা অবশ্যই লাগবে ।**
 
 docuent.js টা ডিলিট করে দিলাম ।
 
 ## Key featucre of next js with file system routing
+
 এবার একটা file create করতে হবে ।
 
 about.js
@@ -140,7 +160,10 @@ export default function () {
 http://localhost:3000/about
 
 ### মনে রাখা প্রয়োজন এটা file এর নাম অনুসারে লিখতে হবে । যেমন : about
-আগে আমরা রিযেক্টে , এভাবে লিখতাম , এখন next js জাস্ট ফাইলের নাম ধরে ডাক দিলাম 
+
+
+***আগে আমরা রিযেক্টে , এভাবে লিখতাম , এখন next js জাস্ট ফাইলের নাম ধরে ডাক দিলাম***
+
 ```js
 const route = [
    {
@@ -151,7 +174,9 @@ const route = [
 ```
 ## Nested route and dynamic route
 #### first Nested route
-একটা folder create করতে হবে । তারপর একটা file ক্রিয়েট করা ।
+
+**একটা folder create করতে হবে । তারপর একটা file ক্রিয়েট করা ।**
+
 * article
   * news.js
 
@@ -172,7 +197,9 @@ export default newws
 http://localhost:3000/article/news
 
 #### এখন কথা হল , article home page কিভাবে করব ?
-জাস্ট ariticle folder e গিয়ে index.js নামে file create করতে হবে ।
+
+**জাস্ট ariticle folder e গিয়ে index.js নামে file create করতে হবে ।**
+
 ```js
 import React from 'react';
 
@@ -215,13 +242,20 @@ http://localhost:3000/article/post/post
 ###### জাস্ট index.js file create করতে পারি
 ## dynamic route 
 
-### dynamic route করতে কি করতে হবে । 
+### dynamic route করতে কি করতে হবে ।
+
 ###### প্রথমে একটা  ফোল্ডার create করি ।  নাম দিলাম product 
-###### [productId].js দিতে হবে 
+
+###### [productId].js দিতে হবে
+
 ### মনে রাখতে হবে [] braket দিতে হবে ।
-### rsc দিয়ে file create করার সাথে সাথে নাম চেন্জ করতে হবে ।
+
+### rsc দিয়ে file create করার সাথে সাথে নাম চেন্জ করতে হবে 
+
 ### এবং import করতে হবে useRouter hook
+
 ### ui তে যদি দেখাতে চাই তাহলে router.query.productId দিতে হবে । এখানে query দিলাম , কারণ এট url থেকে নিতে হবে । productId দিলাম কেন ? কারণ এটা file name .
+
 ```js
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -244,10 +278,16 @@ http://localhost:3000/news/2-3-2023/java/jjsj
 
 ```
 ##### এই url এ dynamic date এর পরে আরও route থাকতে পারে । এই dynamic date এর পরে data search করা যেতে পারে ।
+
 ### এটাকে বলা হয় next js এর ভাষায় catch all route
+
 ### এখানে অনেক route দিলে কাজ করবে 
+
+
 ### এটা কিভাবে করব?
+
 ### এজন্য ফাইলের দিতে হবে 
+
 ## [...slug].js এখানে তিনটা ডট দিতে হবে ।
 for example
 
@@ -295,7 +335,9 @@ const home = () => {
 export default home;
 ```
 ## Automatic home after 5 second 
+
 #### এটা useRouter hook দিয়ে করা হচ্ছে । 
+
 #### setTimeout function এ বলে দিছি , ২ সেকেন্ড পরে কোথায় যাবে ।
 ```js
 import { useRouter } from 'next/router';
@@ -654,11 +696,15 @@ export default Album;
 
 ## run json server 
 **এই নেক্সট জেএস এর মধ্যে একটা কায়েন্ট এবং সাভার রান হয় ।**
+
 **কায়েন্ট সাইড রান করতে হয় `npm run dev` দিয়ে ।**
-**সাভার সাইড রান করতে হয় `npm run json-server` দিয়ে** 
+
+**সাভার সাইড রান করতে হয় `npm run json-server` দিয়ে**
+
 **এখন json server install করতে `npm i json-server`**
 
 **এখন `package.json` লিখতে হবে `"json-server": "json-server --watch db.json --port 5000",` এটা নিচে দেয়া হল**
+
 **এখানে একটা বিষয় লক্ষ রাখতে হবে ‌`db.json` `port 5000` এই দুইটা অবশ্যই দিতে হবে । `db.json` মানে হচ্ছে এই প্রজেক্টে এই নামে একটা ফাইল আছে**
 
 ```json
@@ -1276,6 +1322,343 @@ import styles from "@/styles/Contact.modules.css"
 ```
 
 
+
+
+## Getting Started Next Auth
+
+First, run the development server:
+
+```bash
+npm i
+npm install next-auth
+npm install firebase
+npm i react-firebase-hooks
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+**Next js এর প্রৌভাইড করা অথেনটিকেশন সিস্টেম আছে [https://next-auth.js.org/getting-started/example](https://next-auth.js.org/getting-started/example)**
+
+**এই লিংক থেকে next-auth install করার পর নিচ থকে কোড কপি করে ।** 
+
+**`folder` `auth` and `[...nextauth].js` spread operator দিয়ে `catch all route` file সেইম দিতে হবে**  
+* page 
+  * api
+    * auth
+      * [...nextauth].js
+
+```js
+import NextAuth from "next-auth"
+import GithubProvider from "next-auth/providers/github"
+
+export const authOptions = {
+  // Configure one or more authentication providers
+  providers: [
+    
+  ],
+}
+
+export default NextAuth(authOptions)
+```
+**এখানে _app.js এর সাথে কানেক্ট করতে হবে ।**
+
+import { SessionProvider } from "next-auth/react"
+
+**এখানে SessionProvider `wrap` করে দিতে হবে । এবং session এট্রিভিউট এর ভিতর `pageProps` থেকে পাওয়া `session` কে পাস করে দিতে হবে ।**
+```js
+import '@/styles/globals.css'
+import Navbar from "@/components/Layout/Navbar";
+import { SessionProvider } from "next-auth/react"
+
+export default function App({ Component, pageProps }) {
+  return (
+   <SessionProvider session={pageProps.session}>
+    <>
+      <Navbar />
+      <Component {...pageProps} />
+    </>
+   </SessionProvider>
+  );
+}
+
+```
+## Implement Github authentication
+**প্রথমে এই লিংকে গিয়ে [https://next-auth.js.org/providers/github](https://next-auth.js.org/providers/github) `provider` এর ভিতরে `github`** 
+
+
+**তারপর `github` প্রোফাইলে গিয়ে `setting => development setting => OAuth apps`অথবা [https://github.com/settings/developers](https://github.com/settings/developers)** 
+
+
+**এখানে `regiser app` এ ক্লিক দিয়ে ‌application name এটা যে কোন কিছু , application url এর মধ্যে http://localhost:3000/, application callback এ দিতে হবে  http://localhost:3000/,** 
+
+
+**দিয়ে রেজিস্টার করে `client id and client secret` নিয়ে `.env` file create বসাতে হবে ।**
+
+```js
+import NextAuth from "next-auth"
+import GithubProvider from "next-auth/providers/github"
+
+export const authOptions = {
+  // Configure one or more authentication providers
+  providers: [
+    GithubProvider({
+        clientId: process.env.GITHUB_ID,
+        clientSecret: process.env.GITHUB_SECRET,
+      }),
+  ],
+}
+
+export default NextAuth(authOptions)
+```
+**এখন login.js এর মথ্যে কল করতে হবে  ।** 
+
+```js
+import { signIn } from "next-auth/react";
+ <GithubOutlined onClick={() => signIn("github")}/>
+
+```
+## User in Session 
+**।এবার লগইন হয়ে গেলে ওটা `session` এ রাখতে হবে**
+
+* commponent 
+  * layout
+    * Navbar.js
+```js
+import { useSession, signOut } from "next-auth/react"
+const Navbar = () => {
+  const { data: session } = useSession()
+  console.log("from header", session)
+
+  {session?.user? <items>
+          <Button type="primary" danger>
+            Logout
+          </Button>
+        </items> :
+        <Link style={{ textDecoration: "none", color: "white" }} href="/login">
+          <items>Login</items>
+        </Link>}
+}
+```
+## Sign out user
+**জাস্ট signOut ফাংশনকে কল করতে হবে**
+
+* in Navber.js
+
+```js
+  import { useSession, signOut } from "next-auth/react"
+  <Button onClick={() => signOut()} type="primary" danger>
+            Logout
+          </Button>
+          
+```
+## Redirect after sign in
+
+**জাস্ট `sign in` এর ভিতরে একটা `object` এর আকরে callback টা দিতে হবে ।**
+
+* in login page
+```js
+  <GithubOutlined onClick={() => signIn("github" , {
+            callbackUrl: "http://localhost:3000/"
+          })}/>
+```
+## Show user in profile
+**এখানে name , email সব দেখা যাবে**
+```js
+import { useSession } from "next-auth/react"
+const HomePage = () => {
+  const {data : session} = useSession();
+   <h1 style={{ textAlign: "center" }}>Logged in user : { session?.user?.name}</h1>
+}
+```
+## Google authentication in next 
+[https://next-auth.js.org/providers/google](https://next-auth.js.org/providers/google)
+
+**প্রথমে এই লিংকে [https://console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials) গিয়ে প্রজেক্ট ক্রিয়েট করতে হবে ।** 
+
+**তারপর `auth constant screen` configure করতে হবে ।** 
+
+**তারপর `create credentials` করতে হবে ।** 
+
+**client id and client secret কপি করতে হবে । `.env` file সেট করতে হবে**
+
+* api
+  * auth
+    * [...nextauth].js
+```js
+ GoogleProvider({
+        clientId: process.env.GOOGLE_ID,
+        clientSecret: process.env.GOOGLE_SECRET,
+      }),
+```
+* page
+  * login.js
+```js
+ <GoogleOutlined onClick={() => signIn("google" , {
+            callbackUrl: "http://localhost:3000/"
+          })}/>
+```
+
+## Protect a route from unauthorized user using middleware
+
+**আমরা যখন `react` private route করতাম তখন কম্পোনেন্ট wrap করতে হতো ।**
+
+
+**এখন আমরা next js এ মাত্র দুই লাইন কোড লিখে `private route` করতে পারি ।**
+
+**[https://next-auth.js.org/configuration/nextjs#middleware](https://next-auth.js.org/configuration/nextjs#middleware) এ যেতে হবে আথবা `middleware` সার্চ করে যেতে হবে ।** 
+
+* src
+  * middleware.js
+
+**এখানে যত `ROUTE` আমরা প্রটেক্ট করতে চাই , তত গুলো `array` এর ভিতরে রাখবো**
+
+```js
+export { default } from "next-auth/middleware"
+
+export const config = { matcher: ["/profile"] }
+```
+**এখন যদি আমরা `login` করা বা না করা থাকলে ও `profile` যাই তাহলে `internal server error` দিবে**
+
+**এটা যদি আমরা `login` url এ দেখতে চাই তাহলে** 
+
+```js
+NEXTAUTH_URL = http://localhost:5000
+NEXTAUTH_SECRET = abc
+```
+**এখনো হবে না , তাদের `login` ui টা দেখাবে ।**
+```js
+  pages : {
+    signIn : "/login"
+  }
+```
+**এখন আমাদের ui তে দেখাচ্ছে যদি `profile` ক্লিক করি তাহলে `authorized`না হলে লগইনে নিয়ে যাবে ।** 
+
+## Implementations email and password based authentication with firebase authentication
+
+## Using React hook form
+```bash
+npm install react-hook-form
+```
+
+```js
+// এটা import করতে হবে 
+import { useForm } from "react-hook-form"
+// এটা রিটানের উপরে দিতে হবে 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => console.log(data)
+
+
+//এটা রিটানের ভিতরে দিতে হবে --------------------------------
+ <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="">Your Email</label>
+          <input type="email" {...register("email",  { required: true })}/>
+          {errors.email && <p style={{color : "red"}}>this field is required</p>}
+          <label htmlFor="">Your Password</label>
+          <input type="password" {...register("password" ,  { required: true })}/>
+          {errors.password && <p style={{color : "red"}} >this field is required</p>}
+          <button type="submit">Login</button>
+        </form>
+```
+## Now integrate the firebase
+
+**রথমে firebase গিয়ে [https://console.firebase.google.com/](https://console.firebase.google.com/) new project ক্রিয়েট করতে হবে । web এর জন্য প্রজেক্ট করতে হবে । ২০ সেকেন্ড সময় লাগে ।**
+
+**তারপর `authentication` এ ক্লিক দিয়ে `get started` এ ক্লিক দিয়ে `Email and password``enable` করে দিতে হবে ।** 
+
+**তারপর `project setting` গিয়ে `configuration` টা নিয়ে নিতে হবে ।**
+
+```bash
+npm install firebase
+npm i react-firebase-hooks
+```
+```js
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+```
+
+## multi cursor alignment
+
+**`Shit + tab` দিলে alignment হয়ে যাবে ।**
+
+
+**যে কোন কিছু `select` করে `Ctrl + shtft + L` যেইটা সিলেক্ট করা হয়েছে সব হয়ে যাবে ।**
+
+
+**একটা `symble` থেকে শেষে যেতে চাইলে `Shift + end` অথবা শুরুতে যেতে চাইলে `Shift + start` ক্লিক দিয়ে করতে হবে ।**
+
+
+**যেমন এখানে `=` কে ক্লিক দিয়ে সব সমান সিলেক্ট করে এখান থেকে শুরু বা শেষে যেতে পারব `select` and `copy` , `delete` ,করতে পারব ।**
+
+```js
+Next_apiKey = AIzaSyAZSnt6AcOfRYnW
+Next_authDomain = next-auth
+Next_projectId = next-aut
+Next_storageBucket = next-aut
+Next_messagingSenderId = 83081401299
+Next_appId = 1:83081401299:web
+```
+**যেহেতু `firebase hook` install দিয়ছি । তাই আমরা `hook ` ব্যবহার করব ।** 
+
+**যখন সাবমিট করব তখন `firebase` এ সেভ হবে ।**
+
+
+in login.js
+
+```js
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from "@/firebase/firebase.auth.js";
+
+const LoginPage = () => {
+const [
+  createUserWithEmailAndPassword,
+  user,
+  loading,
+  error,
+] = useCreateUserWithEmailAndPassword(auth);
+
+const onSubmit = (data) => {
+    createUserWithEmailAndPassword(data.email, data.password)
+  }
+
+
+``` 
+**এখন স্টেট থেকে `user` কে পেয়ে যাবো ।** 
+
+```js
+import Head from "next/head";
+import { useSession } from "next-auth/react"
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "@/firebase/firebase.auth";
+const HomePage = () => {
+  const {data : session} = useSession();
+  const [user , loading ,  error] = useAuthState(auth)
+  return (
+    <div>
+      <Head>
+        <title>Next Auth</title>
+      </Head>
+      <h1 style={{ textAlign: "center", marginTop:"10%" }}>Welcome To Next Auth Home Page</h1>
+      {user?.email && <h1 style={{ textAlign: "center" }}>Logged in user : { user?.email}</h1>}
+    </div>
+  );
+};
+
+export default HomePage;
+```
 
 
 
