@@ -1,8 +1,13 @@
 import { Layout, Menu, Button } from "antd";
+import { useSession, signOut } from "next-auth/react"
 const { Header } = Layout;
+
 import Link from "next/link";
 
 const Navbar = () => {
+  const { data: session } = useSession()
+  console.log("from header", session)
+
   return (
     <Header
       style={{
@@ -38,14 +43,14 @@ const Navbar = () => {
         >
           <items>Profile</items>
         </Link>
-        <Link style={{ textDecoration: "none", color: "white" }} href="/login">
-          <items>Login</items>
-        </Link>
-        <items>
-          <Button type="primary" danger>
+        {session?.user? <items>
+          <Button onClick={() => signOut()} type="primary" danger>
             Logout
           </Button>
-        </items>
+        </items> :
+        <Link style={{ textDecoration: "none", color: "white" }} href="/login">
+          <items>Login</items>
+        </Link>}
       </Menu>
     </Header>
   );
